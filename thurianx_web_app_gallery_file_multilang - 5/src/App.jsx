@@ -8,7 +8,7 @@ function WelcomeScreen({ onStart, lang, setLang }) {
   useEffect(() => {
     const audio = new Audio('/Sia.mp3.mp3');
     audio.currentTime = 9;
-    audio.volume = 0.1;
+    audio.volume = 0.8;
     audio.play().catch(() => {});
     window.__thurianxAudio = audio;
 
