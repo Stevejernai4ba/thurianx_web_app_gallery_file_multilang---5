@@ -8,21 +8,31 @@ function WelcomeScreen({ onStart, lang, setLang }) {
   useEffect(() => {
     const playAudioOnce = () => {
       const audio = new Audio('/Sia.mp3.mp3');
-      audio.volume = 1.0;
-      audio.loop = true;
+      audio.currentTime = 9;
+      audio.volume = 0.4;
       audio.play().catch(() => {});
       window.__thurianxAudio = audio;
+
+      // Stop at 37 seconds
+      const stopAt = setInterval(() => {
+        if (audio.currentTime >= 37) {
+          audio.pause();
+          clearInterval(stopAt);
+        }
+      }, 500);
+
       document.removeEventListener('touchstart', playAudioOnce);
     };
     document.addEventListener('touchstart', playAudioOnce);
   }, []);
   const handleStart = () => {
     if (window.__thurianxAudio) {
+      const audio = window.__thurianxAudio;
       const fadeOut = setInterval(() => {
-        if (window.__thurianxAudio.volume > 0.05) {
-          window.__thurianxAudio.volume -= 0.05;
+        if (audio.volume > 0.05) {
+          audio.volume -= 0.05;
         } else {
-          window.__thurianxAudio.pause();
+          audio.pause();
           clearInterval(fadeOut);
         }
       }, 100);
