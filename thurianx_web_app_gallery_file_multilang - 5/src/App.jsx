@@ -6,24 +6,23 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 function WelcomeScreen({ onStart, lang, setLang }) {
   useEffect(() => {
-    const playAudioOnce = () => {
-      const audio = new Audio('/Sia.mp3.mp3');
-      audio.currentTime = 0;
-      audio.volume = 0.2;
-      audio.play().catch(() => {});
-      window.__thurianxAudio = audio;
+    const audio = new Audio('/Sia.mp3.mp3');
+    audio.currentTime = 9;
+    audio.volume = 0.1;
+    audio.play().catch(() => {});
+    window.__thurianxAudio = audio;
 
-      // Stop at 37 seconds
-      const stopAt = setInterval(() => {
-        if (audio.currentTime >= 37) {
-          audio.pause();
-          clearInterval(stopAt);
-        }
-      }, 500);
+    const stopAt = setInterval(() => {
+      if (audio.currentTime >= 21) {
+        audio.pause();
+        clearInterval(stopAt);
+      }
+    }, 500);
 
-      document.removeEventListener('touchstart', playAudioOnce);
+    return () => {
+      audio.pause();
+      clearInterval(stopAt);
     };
-    document.addEventListener('touchstart', playAudioOnce);
   }, []);
   const handleStart = () => {
     if (window.__thurianxAudio) {
