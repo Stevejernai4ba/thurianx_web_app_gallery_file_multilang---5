@@ -24,20 +24,20 @@ function WelcomeScreen({ onStart, lang, setLang }) {
       clearInterval(stopAt);
     };
   }, []);
-  const handleStart = () => {
-    if (window.__thurianxAudio) {
-      const audio = window.__thurianxAudio;
-      const fadeOut = setInterval(() => {
-        if (audio.volume > 0.05) {
-          audio.volume -= 0.05;
-        } else {
-          audio.pause();
-          clearInterval(fadeOut);
-        }
-      }, 100);
-    }
-    onStart();
-  };
+  // const handleStart = () => {
+  //   if (window.__thurianxAudio) {
+  //     const audio = window.__thurianxAudio;
+  //     const fadeOut = setInterval(() => {
+  //       if (audio.volume > 0.05) {
+  //         audio.volume -= 0.05;
+  //       } else {
+  //         audio.pause();
+  //         clearInterval(fadeOut);
+  //       }
+  //     }, 100);
+  //   }
+  //   onStart();
+  // };
   
   const headings = {
     TH: 'ระบบตรวจสอบระดับการสุกของทุเรียน ด้วย AI ที่เรียบง่าย งดงาม และแม่นยำ',
